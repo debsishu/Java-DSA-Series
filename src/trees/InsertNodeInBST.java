@@ -1,42 +1,42 @@
 package trees;
 
 public class InsertNodeInBST {
-	static class TreeNode {
-		int val;
-		TreeNode left, right;
+	static class Node {
+		int data;
+		Node left, right;
 
-		TreeNode(int data) {
-			this.val = data;
+		Node(int data) {
+			this.data = data;
 			left = right = null;
 		}
 	}
 
 	public static void main(String[] args) {
-		TreeNode root = new TreeNode(4);
-		root.left = new TreeNode(2);
-		root.left.left = new TreeNode(1);
-		root.left.right = new TreeNode(3);
-		root.right = new TreeNode(7);
+		Node root = new Node(4);
+		root.left = new Node(2);
+		root.left.left = new Node(1);
+		root.left.right = new Node(3);
+		root.right = new Node(7);
 	}
 
-	static TreeNode insertNode(TreeNode root, int data) {
+	static Node insertNode(Node root, int data) {
 		if (root == null) {
-			return new TreeNode(data);
+			return new Node(data);
 		}
-		TreeNode temp = root;
+		Node temp = root;
 		while (true) {
-			if (temp.val <= data) {
+			if (temp.data <= data) {
 				if (temp.right != null) {
 					temp = temp.right;
 				} else {
-					temp.right = new TreeNode(data);
+					temp.right = new Node(data);
 					break;
 				}
 			} else {
 				if (temp.left != null) {
 					temp = temp.left;
 				} else {
-					temp.left = new TreeNode(data);
+					temp.left = new Node(data);
 					break;
 				}
 			}
