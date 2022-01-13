@@ -118,4 +118,38 @@ public class VerticalLevelTraversal {
 		}
 		return res;
 	}
+
+	static List<List<Integer>> verticalTraveralRecursive(Node root) {
+		List<List<Integer>> res = new ArrayList<>();
+		TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map = new TreeMap<>();
+		preOrder(root, map, 0, 0);
+		for (TreeMap<Integer, PriorityQueue<Integer>> v : map.values()) {
+			List<Integer> temp = new ArrayList<>();
+			for (PriorityQueue<Integer> pq : v.values()) {
+				while (!pq.isEmpty()) {
+					temp.add(pq.remove());
+				}
+			}
+			res.add(temp);
+		}
+		return res;
+	}
+
+	private static void preOrder(Node root, TreeMap<Integer, TreeMap<Integer, PriorityQueue<Integer>>> map, int row,
+			int col) {
+		if (root == null) {
+			return;
+		}
+		if (!map.containsKey(row)) {
+			map.put(row, new TreeMap<>());
+		}
+		if (!map.get(row).containsKey(col)) {
+			map.get(row).put(col, new PriorityQueue<>());
+		}
+		map.get(row).get(col).add(root.data);
+
+		preOrder(root.left, map, row - 1, col + 1);
+		preOrder(root.right, map, row + 1, col + 1);
+	}
+
 }
