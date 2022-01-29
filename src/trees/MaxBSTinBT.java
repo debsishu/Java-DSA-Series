@@ -12,8 +12,8 @@ public class MaxBSTinBT {
 
 		NodeValue(int maxSize, int minNode, int maxNode) {
 			this.maxSize = maxSize;
-			this.minNode = minNode;
 			this.maxNode = maxNode;
+			this.minNode = minNode;
 		}
 	}
 
