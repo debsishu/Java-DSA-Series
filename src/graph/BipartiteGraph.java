@@ -48,6 +48,7 @@ public class BipartiteGraph {
 
 		for (Integer it : adj.get(node)) {
 			if (color[it] == -1) {
+				color[it] = 1 - color[node];
 				if (!checkDFS(it, adj, color)) {
 					return false;
 				}
