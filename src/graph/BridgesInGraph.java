@@ -61,4 +61,28 @@ public class BridgesInGraph {
 			}
 		}
 	}
+
+	// https://practice.geeksforgeeks.org/problems/bridge-edge-in-graph/1
+	// This question have given two nodes and you have to check them if they are
+	// bridges are not
+	// so we dont have to do the whole DFS, if we can check if the other node is
+	// reachable by other nodes or not
+
+	static int isBridge(int V, ArrayList<ArrayList<Integer>> adj, int c, int d) {
+		boolean visited[] = new boolean[V];
+		checkBridge(c, adj, c, d, visited);
+		return visited[d] == false ? 1 : 0;
+	}
+
+	private static void checkBridge(int node, ArrayList<ArrayList<Integer>> adj, int c, int d, boolean[] visited) {
+		visited[node] = true;
+		for (Integer it : adj.get(node)) {
+			if (node == c && it == d) {
+				continue;
+			}
+			if (!visited[it]) {
+				checkBridge(it, adj, c, d, visited);
+			}
+		}
+	}
 }
